@@ -1,0 +1,98 @@
+# ==========================
+# 操作系统通用忽略规则
+# ==========================
+# 临时文件（通常以 ~ 结尾）
+*~
+# 备份文件（通常带 .bak 后缀）
+*.bak
+# 日志文件
+*.log
+# 压缩文件（如非项目必需）
+*.zip
+*.tar.gz
+*.rar
+
+
+# ==========================
+# macOS 特有文件
+# ==========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+
+# ==========================
+# Windows 特有文件
+# ==========================
+# 回收站相关
+$RECYCLE.BIN/
+# 系统隐藏文件（缩略图缓存等）
+Thumbs.db
+ehthumbs.db
+# 资源管理器临时文件
+Desktop.ini
+# Windows 系统日志或临时文件
+*.log
+*.tmp
+# 快捷方式文件
+*.lnk
+# VS Code 在 Windows 上生成的临时文件（如管理员权限相关）
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-workspace
+
+
+# ==========================
+# Linux 特有文件
+# ==========================
+# 桌面环境生成的配置文件（如 KDE/GNOME 的目录配置）
+.directory
+# 临时文件（/tmp 下的文件通常无需提交，但本地项目中可能出现）
+/tmp/
+# 权限相关的临时文件（如文件锁）
+*.lock
+# Vim 等编辑器在 Linux 上生成的交换文件
+*.swp
+*.swo
+
+
+# ==========================
+# 跨系统通用编辑器/工具文件（可选补充）
+# ==========================
+# Git 自身的冲突标记文件
+*.orig
+# Vim 备份文件
+*.viminfo
+# Emacs 自动保存文件
+#*#
+.#*
+# Sublime Text 缓存
+*.sublime-*
+# IntelliJ IDEA 等 JetBrains 系列 IDE 配置
+.idea/
+*.iml
+*.iws
+*.ipr
+# VS Code 工作区配置（非必要）
+.vscode/
+*.code-workspace
+
+# Python 字节码和缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 不同 Python 版本的缓存（例如 Python 3.8+ 的 __pychache__ 结构）
+*.so
+
+# 虚拟环境相关（如果项目使用虚拟环境，建议也忽略）
+venv/
+env/
+ENV/
+*.venv

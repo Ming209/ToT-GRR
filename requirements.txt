@@ -1,0 +1,7 @@
+langchain_core==0.3.79
+langchain_openai==0.3.35
+pandas==2.3.3
+PyYAML==6.0.2
+torch==2.6.0
+tqdm==4.67.1
+transformers==4.49.0

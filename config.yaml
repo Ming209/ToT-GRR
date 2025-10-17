@@ -1,0 +1,15 @@
+dataset: 'pearl'
+num_tot_candidates: 3
+turn: 5
+base_model: 'Llama'
+embedding_model_path: 'data/pearl/checkpoint/dual_encoder_finetuned'
+itemset_embedding_path: 'data/pearl/itemset_map.pt'
+search: 'bfs' # ['bfs','dfs']
+
+
+kappa: 0.95
+lambda_: 0.3
+gamma: 0.015
+MAX_RETRIES: 5
+NUM_SIM: 2
+MAX_SIM: 5
