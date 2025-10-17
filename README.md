@@ -64,11 +64,9 @@ python fine_tuning.py
 Use the following commands to process Pearl dataset into a unified format. 
 
 ```
-cd data/script
 python pearl_pdata.py
 ```
 
-Then use the following code to process the txt data to get the preprocessed data. You can find them in the `
 You can find the preprocessed data in the `/data/pearl` folder.
 
 ### Run
