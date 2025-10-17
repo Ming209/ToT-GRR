@@ -5,3 +5,4 @@ PyYAML==6.0.2
 torch==2.6.0
 tqdm==4.67.1
 transformers==4.49.0
+argparse==1.4.0

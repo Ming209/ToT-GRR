@@ -6,6 +6,7 @@ from datetime import datetime
 import torch
 from utils import *
 import yaml
+import argparse
 
 num_map = {1:'one',2:'two',3:'three',4:'four',5:'five'}
 
@@ -166,7 +167,7 @@ def dfs_simulate(recommender_model,retrial_model,combined_data,MAX_SIM,MAX_RETRI
         
     return root_dialogue,succes_sim
     
-    
+   
 def tot_grr(recommender_model,seeker_model,line, retrial_model, config):
     kappa = config['kappa']
     lambda_ = config['lambda_']
@@ -248,17 +249,32 @@ def tot_grr(recommender_model,seeker_model,line, retrial_model, config):
 
 
 if __name__ == "__main__":
-    
+    # 1. 读取配置文件
     with open("config.yaml", "r") as f:
         config = yaml.safe_load(f)
     
-    dataset = config['dataset']
-    num_tot_candidates = config['num_tot_candidates']
+    # 2. 定义命令行参数解析
+    parser = argparse.ArgumentParser(description="Run experiment with configurable dataset, base model, and search method.")
 
-    base_model = config['base_model']    
+    parser.add_argument("--dataset", type=str, default=config.get('dataset'),
+                        help="Dataset name, overrides config.yaml if specified.")
+    parser.add_argument("--base_model", type=str, default=config.get('base_model'),
+                        help="Base model name, overrides config.yaml if specified.")
+    parser.add_argument("--search", type=str, default=config.get('search'),
+                        help="Search method, overrides config.yaml if specified.")
+
+    # 3. 解析命令行参数
+    args = parser.parse_args()
+
+    # 4. 将参数整合
+    dataset = args.dataset
+    base_model = args.base_model
+    search = args.search 
+    
+    # 5. 其他配置仍来自 config.yaml
+    num_tot_candidates = config['num_tot_candidates']
     embedding_model_path = config['embedding_model_path']
     itemset_embedding_path = config['itemset_embedding_path']
-    search = config['search']      
     
     with open(os.path.join(f'data/{dataset}', f'pre_{dataset}.jsonl')) as f:
             datas = f.readlines()    

@@ -2,7 +2,8 @@ from base_models import *
 import os
 import json
 from tqdm import tqdm
-import sys
+import argparse
+from datetime import datetime
 
 model_map = {
     'Llama': Recommender_Llama_base,
@@ -42,8 +43,14 @@ def run_base(recommender_model,seeker_model,line,turn):
 
 
 if __name__ == "__main__":
-    dataset = 'redial'
-    baseline = 'ChatGPT'
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", type=str, default='redial')
+    parser.add_argument("--baseline", type=str, default='ChatGPT')
+
+    args = parser.parse_args()
+    
+    dataset = args.dataset
+    baseline = args.baseline
     turn = 5
     
     with open(os.path.join(f'data/{dataset}/pre_{dataset}.jsonl')) as f:
@@ -55,7 +62,7 @@ if __name__ == "__main__":
     seeker_model.clear_history()
     recommender_model.clear_history()
     
-    from datetime import datetime
+    
     # 获取当前日期和时间
     current_datetime = datetime.now()
     success_rate = 0

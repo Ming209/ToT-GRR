@@ -60,12 +60,12 @@ class Llama:
         # 配置CUDA设备
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         # 加载模型并直接移动到CUDA设备
-        self.model = AutoModelForCausalLM.from_pretrained('/Data/public/Llama-3.1-8B-Instruct', 
+        self.model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', 
                                                         quantization_config=bnb_config,
                                                         torch_dtype=torch.float16).to(self.device)
         # self.model = AutoModelForCausalLM.from_pretrained('../meta-llama/Llama-3.1-8B-Instruct', device_map='auto',
         #                                                   quantization_config=bnb_config,torch_dtype=torch.float16)
-        self.tokenizer = AutoTokenizer.from_pretrained('/Data/public/Llama-3.1-8B-Instruct')
+        self.tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B-Instruct')
         self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
         self.history_message = ''
         self.system_prompt = ''
@@ -121,7 +121,7 @@ class Qwen:
     def __init__(self,role='assistant'):
         # 配置CUDA设备
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model_name = "/Data/public/Qwen2.5-7B-Instruct"
+        model_name = "Qwen/Qwen2.5-7B-Instruct"
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
             torch_dtype=torch.float16,

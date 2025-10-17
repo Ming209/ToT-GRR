@@ -79,7 +79,7 @@ def processing_data(data):
 def fine_tune():
     # 模型
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model_name = "/Data/public/e5-large-v2"
+    model_name = "intfloat/e5-large-v2"
     model = DualEncoder(model_name).to(device)
 
     # 数据

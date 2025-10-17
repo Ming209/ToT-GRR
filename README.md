@@ -46,45 +46,45 @@ You can download the two datasets we used from the link below.
 
 - [Redial](https://github.com/ReDialData/website/tree/data)
 
-Before running the code, you need to put the downloaded dataset into the corresponding folder under the `data/dateset/raw` path.
+Before running the code, you need to put the downloaded dataset into the corresponding folder under the `/data` path.
 
 ## Usage
 
-For simplicity, here we take Beauty as an example：
+For simplicity, here we take Pearl as an example：
+
+### Fine-Tune 
+Before processing the data, we first fine-tune the retrieval model. We need it to get the embedding of the data. The fine-tuned dataset can be found in the `/data/fine_tune_data` folder.
+```
+cd data/script
+python fine_tuning.py
+```
 
 ### Preprocessed
 
-Use the following code to process different datasets into a unified txt format. You can find them in the `data/dataset/serialize` folder:
+Use the following commands to process Pearl dataset into a unified format. 
 
 ```
-python data/script/serialize_Beauty.py
+cd data/script
+python pearl_pdata.py
 ```
 
-Then use the following code to process the txt data to get the preprocessed data.You can find them in the `data/preprocessed` folder:
+Then use the following code to process the txt data to get the preprocessed data. You can find them in the `
+You can find the preprocessed data in the `/data/pearl` folder.
+
+### Run
+
+To run **ToT-GRR(LLaMA,BFS)** on Pearl (with default hyper-parameters):
 
 ```
-python Datapreprocessed.py --dataset=Beauty
+cd ../../
+python main.py --dataset=pearl --base_model=Llama --search=bfs
+```
+
+You can run the **LLaMA** baseline model in Pearl using the following commands:
+```
+python main.py --dataset=pearl --baseline=Llama
 ```
 
 >[!NOTE]
->the GPT-3.5-turbo API will be called here, and you need to fill in the **API key** in the *gpt_request()* function in `utils.py` in advance
-
-
-### Train
-
-To train **Baseline(SASRec)** on Beauty (with default hyper-parameters):
-
-```
-python train_baseline.py --dataset=Beauty --model=SASRec --config_path=config/sasrec.json --maxlen=50
-```
-
-
-To train **LANE(LANE-SASRec)** on Beauty (with default hyper-parameters):
-
-```
-python train_LANE.py --dataset=Beauty --inte_model=SASRec --inte_model_config_path=config/sasrec.json --maxlen=50
-```
-
-You can add the `--generate_explanation` parameter to let **LANE** generate explainable recommendations, which also requires calling the GPT API. Considering the call cost, we only randomly select 100 samples by default to generate explainable recommendations.
-
+>If you are using the GPT-3.5-turbo model, you need to fill in the **API key** in the ChatGPT class definition in `base_models.py` in advance.
 
