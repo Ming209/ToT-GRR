@@ -80,7 +80,7 @@ python main.py --dataset=pearl --base_model=Llama --search=bfs
 
 You can run the **LLaMA** baseline model in Pearl using the following commands:
 ```
-python main.py --dataset=pearl --baseline=Llama
+python run_baseline.py --dataset=pearl --baseline=Llama
 ```
 
 >[!NOTE]
